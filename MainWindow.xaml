@@ -12,7 +12,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
      
-        <Menu DockPanel.Dock="Top" Background="LightBlue">
+        <Menu Grid.Row="0" DockPanel.Dock="Top" Background="LightBlue">
             <MenuItem Header="_File" Click="MenuItem_Click">
                 <MenuItem Header="Add">
                     <MenuItem Header="Book">
@@ -40,7 +40,18 @@
             </MenuItem>
             
         </Menu>
-        <Grid 
+        <StackPanel Grid.Row="1">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="/Assets/Images/bookstore.jpg"
+                            Stretch="UniformToFill"/>
+            </StackPanel.Background>
+
+            <Border Background="Black">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="ITHS BOOKSTORE" FontSize="48" FontWeight="Bold" Foreground="White"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
 
     </Grid>
 </Window>

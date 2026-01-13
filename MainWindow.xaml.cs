@@ -19,6 +19,7 @@ namespace WPF_for_bokstore
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
