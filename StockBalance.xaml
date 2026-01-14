@@ -1,0 +1,95 @@
+﻿<Page x:Class="WPF_for_bokstore.StockBalance"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPF_for_bokstore"
+      mc:Ignorable="d" 
+      d:DesignHeight="250" d:DesignWidth="350"
+      Title="StockBalance">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+
+        </Grid.ColumnDefinitions>
+
+
+        <Button
+                Grid.Column="1"
+                Grid.Row="0"
+                Content="x"
+                
+                Height="20"
+                Width="20"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                HorizontalContentAlignment="Center"
+                BorderThickness="0"
+                Background="Red"
+                Click="Button_Click"
+                
+               />
+
+
+        <TextBlock 
+            Grid.Row="0"
+            Grid.Column="0"
+            Text="Stock"
+            HorizontalAlignment="Left"/>
+
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Background="White" Margin="10"  >
+            <TextBlock Text="Select Store"
+                       HorizontalAlignment="Left" 
+                       FontSize="10"
+                       Height="30" 
+                       Margin="0,10,0,5"/>
+            <ComboBox
+                Grid.Row="2"
+                    Width="200"
+                    Margin="0,0,0,10" 
+                    BorderBrush="Black" 
+                    BorderThickness="1">
+                <ComboBoxItem Content="citybooks central"/>
+                <ComboBoxItem Content="nordic readers"/>
+                <ComboBoxItem Content="booknest west"/>
+
+            </ComboBox>
+
+            <Border Grid.Row="3"    Grid.Column="0"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    CornerRadius="5"
+                    
+                    Padding="5" 
+                    Width="200"
+                    Margin="0,10,0,0">
+
+                <TextBlock
+                Grid.Row="4"
+                x:Name="Result"
+                       Text="Stock in Store "
+                       FontSize="15"
+                       Foreground="Black"
+                       TextAlignment="Center"
+                      
+                       />
+            </Border>
+            <Button Grid.Row="4"
+                Content="View Stock"
+                    Width="150" Margin="10,40,10,10"
+                    Command="{Binding ViewStock}"/>
+        </StackPanel>
+    </Grid>
+</Page>
