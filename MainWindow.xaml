@@ -6,14 +6,16 @@
         xmlns:local="clr-namespace:WPF_for_bokstore"
         mc:Ignorable="d"
         Title="Book Store" Height="450" Width="800">
-    <Grid>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-     
-        <Menu Grid.Row="0" DockPanel.Dock="Top" Background="LightBlue">
-            <MenuItem Header="_File" Click="MenuItem_Click">
+        </Grid.RowDefinitions>-->
+        <DockPanel LastChildFill="True">
+            <Menu Grid.Row="0" DockPanel.Dock="Top"
+                  Background="LightBlue">
+                <MenuItem Header="_File" 
+                          Click="MenuItem_Click">
                 <MenuItem Header="Add">
                     <MenuItem Header="Book">
                         
@@ -34,24 +36,36 @@
             </MenuItem>
 
             <MenuItem Header="_View" >
-                <MenuItem Header="StockBalance">
-                    
-                </MenuItem>
+                    <MenuItem Header="StockBalance"
+                          Click="MenuItem_Click_1" />
             </MenuItem>
             
         </Menu>
-        <StackPanel Grid.Row="1">
+            <Frame x:Name="MainFrame" 
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"
+                   NavigationUIVisibility="Hidden"
+                   Background="Transparent"/>
+        </DockPanel>
+        <!--<StackPanel Grid.Row="1">
             <StackPanel.Background>
                 <ImageBrush ImageSource="/Assets/Images/bookstore.jpg"
-                            Stretch="UniformToFill"/>
+                            Stretch="UniformToFill"
+                            />
             </StackPanel.Background>
 
             <Border Background="Black">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock Text="ITHS BOOKSTORE" FontSize="48" FontWeight="Bold" Foreground="White"/>
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="ITHS BOOKSTORE"
+                               FontSize="48" 
+                               FontWeight="Bold" 
+                               Foreground="White"
+                              />
                 </StackPanel>
             </Border>
-        </StackPanel>
+        </StackPanel>-->
 
-    </Grid>
+
+    <!--</Grid>-->
 </Window>
