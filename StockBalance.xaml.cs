@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_for_bokstore.ViewModels;
 
 namespace WPF_for_bokstore
 {
@@ -23,6 +24,7 @@ namespace WPF_for_bokstore
         public StockBalance()
         {
             InitializeComponent();
+            DataContext = new StockBalanceViewModel();
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
