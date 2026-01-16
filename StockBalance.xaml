@@ -15,11 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+         
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -67,34 +63,21 @@
                     BorderThickness="1"
                     ItemsSource="{Binding Stores}"
                     DisplayMemberPath="StoreName"
-                    SelectedItem="{Binding SelectedStore, Mode=TwoWay}"/>
+                    SelectedItem="{Binding SelectedStore}"/>
+
+
+            <DataGrid ItemsSource="{Binding StockBalanceInStore}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ISBN13" Binding="{Binding BookIsbn13}"/>
+                    <DataGridTextColumn Header="StockBalance" Binding="{Binding Count}"/>
+
+                </DataGrid.Columns>
+                
+            </DataGrid>
 
 
 
-
-            <Border Grid.Row="3"    Grid.Column="0"
-                    BorderBrush="Black"
-                    BorderThickness="1"
-                    CornerRadius="5"
-                    
-                    Padding="5" 
-                    Width="200"
-                    Margin="0,10,0,0">
-
-                <TextBlock
-                Grid.Row="4"
-                x:Name="Result"
-                       Text="Stock in Store "
-                       FontSize="15"
-                       Foreground="Black"
-                       TextAlignment="Center"
-                      
-                       />
-            </Border>
-            <Button Grid.Row="4"
-                Content="View Stock"
-                    Width="150" Margin="10,40,10,10"
-                    Command="{Binding ViewStock}"/>
         </StackPanel>
-    </Grid>
+
+    </Grid>   
 </Page>
