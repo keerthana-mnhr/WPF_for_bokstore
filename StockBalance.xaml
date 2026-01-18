@@ -65,6 +65,13 @@
                     DisplayMemberPath="StoreName"
                     SelectedItem="{Binding SelectedStore}"/>
 
+            <Button x:Name="AddBook"
+                    Content="AddBook"
+                    Width="60"
+                    Margin="10"
+                    Click="AddBook_Click"
+                    />
+
 
             <DataGrid ItemsSource="{Binding StockBalanceInStore}" AutoGenerateColumns="False">
                 <DataGrid.Columns>

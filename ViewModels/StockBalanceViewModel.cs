@@ -26,7 +26,7 @@ namespace WPF_for_bokstore.ViewModels
                 _selectedStore = value;
                 RaisePropertyChanged();
                 LoadStockBalance();
-                RaisePropertyChanged("StockBalanceInStore");
+                RaisePropertyChanged(nameof(StockBalanceInStore));
             }
         }
 
@@ -49,14 +49,44 @@ namespace WPF_for_bokstore.ViewModels
         {
             using var db = new BookStoreContext();
 
-         
+
 
             StockBalanceInStore = new ObservableCollection<Models.StockBalance>
                 (
               db.StockBalances
+                     .Include(sb => sb.BookIsbn13Navigation)
                     .Where(sb => sb.StoreId == _selectedStore.Id)
                     .ToList()
                 );
+            RaisePropertyChanged(nameof(StockBalanceInStore));
+
+        }
+
+        public void AddBookToStock(string bookIsbn13, int count  )
+        {
+            if (_selectedStore == null) return;
+            using var db = new BookStoreContext();
+
+            var existingStock = db.StockBalances
+                .FirstOrDefault(sb => sb.StoreId == _selectedStore.Id && sb.BookIsbn13 == bookIsbn13);
+
+            if (existingStock != null)
+            {
+                existingStock.Count = (existingStock.Count ?? 0) + count;
+            }
+
+            else
+            {
+                var newStockBalance = new Models.StockBalance()
+                {
+                    StoreId = _selectedStore.Id,
+                    BookIsbn13 = bookIsbn13,
+                    Count = count
+                };
+                db.StockBalances.Add(newStockBalance);
+            }
+            db.SaveChanges();
+            LoadStockBalance();
 
         }
 

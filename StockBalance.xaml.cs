@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_for_bokstore.Models;
 using WPF_for_bokstore.ViewModels;
 
 namespace WPF_for_bokstore
@@ -21,10 +22,12 @@ namespace WPF_for_bokstore
     /// </summary>
     public partial class StockBalance : Page
     {
+        private StockBalanceViewModel _viewModel;
         public StockBalance()
         {
             InitializeComponent();
-            DataContext = new StockBalanceViewModel();
+            _viewModel = new StockBalanceViewModel();
+            DataContext = _viewModel;
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -34,6 +37,24 @@ namespace WPF_for_bokstore
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void AddBook_Click(object sender, RoutedEventArgs e)
+        {
+            if (_viewModel.SelectedStore == null)
+            {
+                MessageBox.Show("Select a store", "No store Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            var addBookWindow = new AddBookWindow();
+            addBookWindow.ShowDialog();
+
+            if (addBookWindow.IsSaved && addBookWindow.SelectedBook != null)
+            {
+                _viewModel.AddBookToStock(addBookWindow.SelectedBook.Isbn13, addBookWindow.BookCount);
+                MessageBox.Show("Added Successfully");
+            }
 
         }
     }
