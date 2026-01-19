@@ -18,6 +18,7 @@ namespace WPF_for_bokstore.ViewModels
         public ObservableCollection<Models.StockBalance> StockBalanceInStore { get; set; }
 
         private Store? _selectedStore;
+        private Models.StockBalance? _selectedStockBalance;
 
         public Store? SelectedStore
         {
@@ -30,6 +31,15 @@ namespace WPF_for_bokstore.ViewModels
             }
         }
 
+        public Models.StockBalance? SelectedStockBalance
+        {
+            get => _selectedStockBalance;
+            set
+            {
+                _selectedStockBalance = value;
+                RaisePropertyChanged();
+            }
+        }
         public StockBalanceViewModel()
         {
             LoadData();
@@ -89,6 +99,27 @@ namespace WPF_for_bokstore.ViewModels
             LoadStockBalance();
 
         }
+
+        public bool DeleteSelectedStock()
+        {
+            if (_selectedStore == null || _selectedStockBalance == null) 
+                return false;
+            using var db = new BookStoreContext();
+
+            var stockToRemove = db.StockBalances
+                .FirstOrDefault(sb => sb.StoreId == _selectedStockBalance.StoreId && sb.BookIsbn13 == _selectedStockBalance.BookIsbn13);
+
+            if (stockToRemove != null)
+            {
+                db.StockBalances.Remove(stockToRemove);
+                db.SaveChanges();
+                LoadStockBalance();
+                SelectedStockBalance = null;
+                return true;
+            }
+            return false;
+        }
+
 
     }
 }

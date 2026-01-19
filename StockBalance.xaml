@@ -71,9 +71,18 @@
                     Margin="10"
                     Click="AddBook_Click"
                     />
+            <Button x:Name="DeleteBook"
+                    Content="Delete"
+                     Width="60"
+                    Margin="10"
+                    Click="DeleteBook_Click"
+                    />
 
 
-            <DataGrid ItemsSource="{Binding StockBalanceInStore}" AutoGenerateColumns="False">
+            <DataGrid ItemsSource="{Binding StockBalanceInStore}" 
+                      SelectedItem="{Binding SelectedStockBalance}"
+                      AutoGenerateColumns="False"
+                      SelectionMode="Single">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ISBN13" Binding="{Binding BookIsbn13}"/>
                     <DataGridTextColumn Header="StockBalance" Binding="{Binding Count}"/>

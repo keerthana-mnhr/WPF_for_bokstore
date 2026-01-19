@@ -57,5 +57,26 @@ namespace WPF_for_bokstore
             }
 
         }
+
+        private void DeleteBook_Click(object sender, RoutedEventArgs e)
+        {
+            if (_viewModel.SelectedStockBalance == null)
+            {
+                MessageBox.Show("Select a Book from List", "No Books Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            var selectedStock = _viewModel.SelectedStockBalance;
+           
+
+            if (_viewModel.DeleteSelectedStock())
+            {
+                MessageBox.Show("Deleted Successfully");
+            }
+            else
+            {
+                MessageBox.Show("failed to delete");
+            }
+
+        }
     }
 }
